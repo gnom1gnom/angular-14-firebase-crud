@@ -41,7 +41,7 @@ export class TutorialService {
   }
 
   pushFileToStorage(fileUpload: FileUpload): uploadTracker {
-    const filePath = `${this.basePath}/${nanoid()}`;
+    const filePath = `${this.basePath}/${nanoid()}${fileUpload.file.name}`;
     const storageRef = this.storage.ref(filePath);
     return {
       uploadTask: this.storage.upload(filePath, fileUpload.file),

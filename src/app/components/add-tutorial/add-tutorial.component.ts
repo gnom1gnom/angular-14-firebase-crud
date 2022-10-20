@@ -57,6 +57,7 @@ export class AddTutorialComponent implements OnInit {
     uploadTracker.uploadTask.snapshotChanges().pipe(
       finalize(() => {
         uploadTracker.storageRef.getDownloadURL().subscribe(downloadURL => {
+          this.tutorial.storageKey = uploadTracker.uploadTask.task.snapshot.metadata.fullPath;
           this.tutorial.fileUrl = downloadURL;
           this.tutorialService.create(this.tutorial).then(() => {
             console.log('Created new item successfully!');
